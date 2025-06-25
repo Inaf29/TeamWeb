@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espyro Team - Tim Copter Fixed Wing</title>
+
+</head>
     <style>
         * {
             margin: 0;
@@ -29,7 +31,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: white;
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
@@ -55,9 +57,15 @@
         }
 
         .logo::before {
-            content: "✈️";
-            font-size: 2rem;
-        }
+            font-size: 2rem;;
+            content: "";
+            display: inline-block;
+            background-image: url(logo.jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 6rem;   /* atur sesuai kebutuhan */
+            height: 6rem;
+        }   
 
         .nav-links {
             display: flex;
@@ -83,7 +91,6 @@
             background: #ff8c00;
             transition: width 0.3s ease;
         }
-
         .nav-links a:hover::after {
             width: 100%;
         }
@@ -106,13 +113,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,800 1000,1000"/><polygon fill="rgba(255,255,255,0.05)" points="0,800 1000,600 1000,800 0,1000"/></svg>');
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.15)" points="0,1000 1000,800 1000,1000"/><polygon fill="rgba(255,255,255,0.1)" points="0,800 1000,600 1000,800 0,1000"/></svg>');
         }
 
         .hero-content {
@@ -176,7 +177,7 @@
         .about {
             background: white;
             border-radius: 20px;
-            margin: 2rem 0;
+            margin: 3rem;
             padding: 3rem;
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             transform: translateY(50px);
@@ -213,9 +214,9 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .team-card {
@@ -232,56 +233,225 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 50px rgba(255, 140, 0, 0.2);
         }
-
         .avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #f7c32e, #ff8c00);
             margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: white;
-            font-weight: bold;
         }
 
         .achievements {
-            background: linear-gradient(135deg, #f7c32e 0%, #ffd700 50%, #ff8c00 100%);
             color: white;
-            border-radius: 20px;
-            margin: 2rem 0;
-            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 1rem;
+        }
+
+        /* Animated background elements */
+        .achievements::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideDown 1s ease-out;
+            z-index: 2;
+            position: relative;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .achievement-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            max-width: 100%;
+            width: 95%;
+            height: 70vh;
+            z-index: 2;
+            position: relative;
         }
 
         .achievement-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out;
+            animation-delay: calc(var(--delay, 0) * 0.2s);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-item:nth-child(1) { --delay: 1; }
+        .achievement-item:nth-child(2) { --delay: 2; }
+        .achievement-item:nth-child(3) { --delay: 3; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .achievement-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+            z-index: 1;
+        }
+
+        .achievement-item:hover::before {
+            left: 100%;
         }
 
         .achievement-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
-        .achievement-icon {
+        .media-container {
+            flex: 1;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 0.8rem;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.05) 50%, 
+                rgba(255,255,255,0.1) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            border: 1px dashed rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .media-placeholder:hover {
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.2) 0%, 
+                rgba(255,255,255,0.1) 50%, 
+                rgba(255,255,255,0.2) 100%);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .media-icon {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            animation: pulse 2s infinite;
         }
 
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        .media-text {
+            font-size: 0.9rem;
+            text-align: center;
+            opacity: 0.8;
+            line-height: 1.3;
+        }
+
+        .achievement-label {
+            padding: 0.8rem;
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .achievement-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .achievement-subtitle {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Phone frame effect */
+        .phone-frame {
+            position: absolute;
+            inset: 0;
+            border: 3px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
         .specs {
             background: white;
             border-radius: 20px;
@@ -309,7 +479,6 @@
             color: #ff8c00;
             margin-bottom: 0.5rem;
         }
-
         .contact {
             background: #2c1810;
             color: white;
@@ -357,7 +526,26 @@
             margin: 3px 0;
             transition: 0.3s;
         }
-
+        .login{
+            position: fixed;
+            z-index: 1000;
+            bottom: 3rem;
+            right: 3rem;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 0.2rem 2rem;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            border:solid 3px rgba(255, 255, 255, 0.8);
+            transition: background 0.5s , border 0.5s ease 0.5s, color 0.5s ease 0.5s;
+        }
+        .login:hover{
+            background:#f7c32e;
+            border:solid 3px rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.8);
+        }
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -384,23 +572,6 @@
                 align-items: center;
             }
         }
-
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-element {
-            position: absolute;
-            opacity: 0.1;
-            animation: floatAround 20s linear infinite;
-        }
-
         @keyframes floatAround {
             0% {
                 transform: translateY(100vh) rotate(0deg);
@@ -408,26 +579,19 @@
             100% {
                 transform: translateY(-100px) rotate(360deg);
             }
+
         }
     </style>
-</head>
 <body>
-    <div class="floating-elements">
-        <div class="floating-element" style="left: 10%; animation-delay: 0s;">✈️</div>
-        <div class="floating-element" style="left: 20%; animation-delay: 5s;">🚁</div>
-        <div class="floating-element" style="left: 30%; animation-delay: 10s;">🛩️</div>
-        <div class="floating-element" style="left: 80%; animation-delay: 15s;">✈️</div>
-    </div>
-
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Espyro Team</div>
+            <div class="logo">Espyro Team 24/25</div>
             <ul class="nav-links">
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#about">Tentang</a></li>
-                <li><a href="#team">Tim</a></li>
-                <li><a href="#achievements">Prestasi</a></li>
+                <li><a href="#achievements">Kegiatan</a></li>
                 <li><a href="#specs">Spesifikasi</a></li>
+                <li><a href="#team">Tim</a></li>
                 <li><a href="#contact">Kontak</a></li>
             </ul>
             <div class="mobile-menu">
@@ -441,120 +605,91 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Espyro Team</h1>
-            <p>Tim Copter Fixed Wing unggulan Politeknik Elektronika Negeri Surabaya yang berdedikasi dalam kompetisi Kompetisi Robot Terbang Indonesia (KRTI). Menggabungkan inovasi teknologi dan semangat juang untuk meraih prestasi terbaik.</p>
+            <p>Tim UAV Fixed Wing unggulan Politeknik Elektronika Negeri Surabaya yang berdedikasi dalam kompetisi Kompetisi Robot Terbang Indonesia (KRTI). Menggabungkan inovasi teknologi dan semangat juang untuk meraih prestasi terbaik.</p>
             <a href="#about" class="cta-button">Pelajari Lebih Lanjut</a>
         </div>
+        <a class="login" href="https://www.instagram.com/">Login</a>
     </section>
 
-    <div class="section">
-        <section id="about" class="about">
+    <div id="about" class="section">
+        <section  class="about">
             <h2 class="section-title">Tentang Tim Kami</h2>
             <p style="font-size: 1.1rem; text-align: center; line-height: 1.8; color: #666;">
-                Espyro Team adalah tim mahasiswa yang berfokus pada pengembangan teknologi copter fixed wing untuk kompetisi Robot Terbang Indonesia. Kami terdiri dari mahasiswa-mahasiswa berprestasi dari berbagai disiplin ilmu yang memiliki passion tinggi dalam bidang aerospace.
+                Espyro Team adalah tim mahasiswa yang berfokus pada pengembangan teknologi UAV fixed wing untuk kompetisi KRTI. Kami terdiri dari mahasiswa-mahasiswa berprestasi dari berbagai disiplin ilmu yang memiliki passion tinggi dalam bidang aerospace.
             </p>
             <p style="font-size: 1.1rem; text-align: center; line-height: 1.8; color: #666; margin-top: 1.5rem;">
                 Dengan kombinasi kemampuan teknis, kreativitas, dan kerja tim yang solid, kami terus berinovasi untuk menciptakan solusi terdepan dalam teknologi unmanned aerial vehicle (UAV) yang dapat berkontribusi bagi kemajuan industri dirgantara Indonesia.
             </p>
         </section>
-
-        <section id="team" class="about">
-            <h2 class="section-title">Tim Kami</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="avatar">AR</div>
-                    <h3>Aria</h3>
-                    <p><strong>Team Leader & GCS</strong></p>
-                    <p>Mahasiswa Teknik Telekomunikasi dengan spesialisasi sistem kendali otomatis dan navigasi UAV.</p>
-                </div>
-                <div class="team-card">
-                    <div class="avatar">FM</div>
-                    <h3>Firman</h3>
-                    <p><strong>Mechanical Engineer</strong></p>
-                    <p>Ahli desain struktur dan aerodinamika dengan pengalaman dalam optimisasi performa aircraft.</p>
-                </div>
-                    <div class="team-card">
-                    <div class="avatar">IR</div>
-                    <h3>Isrofi</h3>
-                    <p><strong>Mechanical Engineer</strong></p>
-                    <p>Ahli desain struktur dan aerodinamika dengan pengalaman dalam optimisasi performa aircraft.</p>
-                </div>
-                <div class="team-card">
-                    <div class="avatar">FI</div>
-                    <h3>Firdi</h3>
-                    <p><strong>Electronics Specialist & Pilot</strong></p>
-                    <p>Expert dalam sistem elektronik, sensor integration, dan telemetry systems.Pilot berpengalaman dengan sertifikasi UAV dan expertise dalam flight testing procedures.</p>
-                </div>
-                    <div class="team-card">
-                    <div class="avatar">FE</div>
-                    <h3>Ferdi</h3>
-                    <p><strong>Electronics Specialist</strong></p>
-                    <p>Expert dalam sistem elektronik, sensor integration, dan telemetry systems.</p>
-                </div>
-                <div class="team-card">
-                    <div class="avatar">M</div>
-                    <h3>Mitha</h3>
-                    <p><strong>Project Manager</strong></p>
-                    <p>Koordinator proyek dengan keahlian dalam manajemen tim dan strategic planning.</p>
-                </div>
-                <div class="team-card">
-                    <div class="avatar">NF</div>
-                    <h3>Nafi</h3>
-                    <p><strong> GCS</strong></p>
-                    <p>Mahasiswa Teknik Elektronika dengan spesialisasi sistem kendali otomatis dan navigasi UAV.</p>
-                </div>
-                <div class="team-card">
-                    <div class="avatar">NZ</div>
-                    <h3>Nazil</h3>
-                    <p><strong>Mechanical Engineer</strong></p>
-                    <p>Ahli desain struktur dan aerodinamika dengan pengalaman dalam optimisasi performa aircraft.</p>
-                </div>
-                    <div class="team-card">
-                    <div class="avatar">EL</div>
-                    <h3>El</h3>
-                    <p><strong>Mechanical Engineer</strong></p>
-                    <p>Ahli desain struktur dan aerodinamika dengan pengalaman dalam optimisasi performa aircraft.</p>
-                </div>
-                <div class="team-card">
-                    <div class="avatar">SN</div>
-                    <h3>Sony</h3>
-                    <p><strong>Electronics Specialist</strong></p>
-                    <p>Expert dalam sistem elektronik, sensor integration, dan telemetry systems.</p>
-                </div>
-                <div class="team-card">
-                    <div class="avatar">MI</div>
-                    <h3>Mei</h3>
-                    <p><strong>Project Manager</strong></p>
-                    <p>Koordinator proyek dengan keahlian dalam manajemen tim dan strategic planning.</p>
-                </div>
-            </div>
-        </section>
-
         <section id="achievements" class="achievements">
-            <h2 class="section-title" style="color: white;">Prestasi & Pencapaian</h2>
+            <h2 class="section-title">Kegiatan</h2>
             <div class="achievement-grid">
+                
+                <!-- Achievement 1 -->
                 <div class="achievement-item">
-                    <div class="achievement-icon">🏆</div>
-                    <h3>Juara 1</h3>
-                    <p>Kompetisi Robot Terbang Indonesia 2024 - Kategori Fixed Wing</p>
+                    <div class="phone-frame"></div>
+                    <div class="media-container">
+                        <div class="media-placeholder">
+                            <div class="media-icon">🏆</div>
+                            <div class="media-text">
+                                <video class="media-video" controls muted>
+                                    <source src="reels/KRTI2024.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="play-overlay">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-label">
+                        <div class="achievement-title">KRTI 2024</div>
+                        <div class="achievement-subtitle">KRTI 2024</div>
+                    </div>
                 </div>
+
+                <!-- Achievement 2 -->
                 <div class="achievement-item">
-                    <div class="achievement-icon">🥈</div>
-                    <h3>Juara 2</h3>
-                    <p>Indonesian Drone Racing Championship 2024</p>
+                    <div class="phone-frame"></div>
+                    <div class="media-container">
+                        <div class="media-placeholder">
+                            <div class="media-icon">🥈</div>
+                            <div class="media-text">
+                                <video class="media-video" controls muted>
+                                    <source src="reels/KRTI2024.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="play-overlay">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-label">
+                        <div class="achievement-title">KRTI 2024</div>
+                        <div class="achievement-subtitle">KRTI 2024</div>
+                    </div>
                 </div>
+
+                <!-- Achievement 3 -->
                 <div class="achievement-item">
-                    <div class="achievement-icon">🎯</div>
-                    <h3>Best Innovation</h3>
-                    <p>Penghargaan Inovasi Terbaik - Teknologi Autonomous Navigation</p>
+                    <div class="phone-frame"></div>
+                    <div class="media-container">
+                        <div class="media-placeholder">
+                            <div class="media-icon">🎯</div>
+                            <div class="media-text">
+                                <video class="media-video" controls muted>
+                                    <source src="reels/KRTI2024.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="play-overlay">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-label">
+                        <div class="achievement-title">KRTI 2024</div>
+                        <div class="achievement-subtitle">KRTI 2024</div>
+                    </div>
                 </div>
-                <div class="achievement-item">
-                    <div class="achievement-icon">⭐</div>
-                    <h3>Best Team</h3>
-                    <p>Tim Terbaik dalam Kategori Kerjasama dan Presentasi Teknis</p>
-                </div>
+
             </div>
         </section>
-
         <section id="specs" class="specs">
             <h2 class="section-title">Spesifikasi Aircraft</h2>
             <div class="specs-grid">
@@ -608,7 +743,93 @@
                 </div>
             </div>
         </section>
-
+        <section id="team" class="about">
+            <h2 class="section-title">Tim Kami</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img class="avatar" src="Profile/pakAri.jpg" alt="Pak Ari"/>
+                    <h3>Pak Ari</h3>
+                    <p><strong>Dosen Pembimbing 1</strong></p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/PakFiryal.jpg" alt="Pak Firyal"/>
+                    <h3>Pak Firyal</h3>
+                    <p><strong>Dosen Pembimbing 2</strong></p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/arya.jpg" alt="arya"/>
+                    <h3>Arya</h3>
+                    <p><strong>Team Leader & GCS</strong></p>
+                    <p>Mahasiswa Teknik Telekomunikasi dengan spesialisasi sistem kendali otomatis dan navigasi UAV.</p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/firman.jpg" alt="firman"/>
+                    <h3>Firman</h3>
+                    <p><strong>Mechanical Engineer</strong></p>
+                    <p>Ahli desain struktur dan aerodinamika dengan pengalaman dalam optimisasi performa aircraft.</p>
+                </div>
+                    <div class="team-card">
+                    <img class="avatar" src="Profile/isrofi.jpg" alt="isrofi"/>
+                    <h3>Isrofi</h3>
+                    <p><strong>Mechanical Engineer</strong></p>
+                    <p>Ahli desain struktur dan aerodinamika dengan pengalaman dalam optimisasi performa aircraft.</p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/Firdi.jpg" alt="firdi"/>
+                    <h3>Firdi</h3>
+                    <p><strong>Electronics Specialist & Pilot</strong></p>
+                    <p>Expert dalam sistem elektronik, sensor integration, dan telemetry systems.Pilot berpengalaman dengan sertifikasi UAV dan expertise dalam flight testing procedures.</p>
+                </div>
+                    <div class="team-card">
+                    <img class="avatar" src="Profile/ferdi.jpg" alt="ferdi"/>
+                    <h3>Ferdi</h3>
+                    <p><strong>Electronics Specialist</strong></p>
+                    <p>Expert dalam sistem elektronik, sensor integration, dan telemetry systems.</p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/mitha.jpg" alt="mitha"/>
+                    <h3>Mitha</h3>
+                    <p><strong>Project Manager</strong></p>
+                    <p>Koordinator proyek dengan keahlian dalam manajemen tim dan strategic planning.</p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/salas.jpg" alt="salas"/>
+                    <h3>Salas</h3>
+                    <p><strong> GCS</strong></p>
+                    <p>Mahasiswa Teknik Telekomunikasi dengan spesialisasi sistem kendali otomatis dan navigasi UAV.</p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/Na.jpg" alt="Nafi"/>
+                    <h3>Nafi</h3>
+                    <p><strong> GCS</strong></p>
+                    <p>Mahasiswa Teknik Elektronika dengan spesialisasi sistem kendali otomatis dan navigasi UAV.</p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/Nazil.jpg" alt="Nazil"/>
+                    <h3>Nazil</h3>
+                    <p><strong>Mechanical Engineer</strong></p>
+                    <p>Ahli desain struktur dan aerodinamika dengan pengalaman dalam optimisasi performa aircraft.</p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/El.jpg" alt="Elzia"/>
+                    <h3>Elzia</h3>
+                    <p><strong>Mechanical Engineer</strong></p>
+                    <p>Ahli desain struktur dan aerodinamika dengan pengalaman dalam optimisasi performa aircraft.</p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/sonh.jpg" alt="Sony"/>
+                    <h3>Sony</h3>
+                    <p><strong>Electronics Specialist</strong></p>
+                    <p>Expert dalam sistem elektronik, sensor integration, dan telemetry systems.</p>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="Profile/mei.jpg" alt="Mei"/>
+                    <h3>Mei</h3>
+                    <p><strong>Project Manager</strong></p>
+                    <p>Koordinator proyek dengan keahlian dalam manajemen tim dan strategic planning.</p>
+                </div>
+            </div>
+        </section>
         <section id="contact" class="contact">
             <h2 class="section-title" style="color: white;">Hubungi Kami</h2>
             <p style="font-size: 1.1rem; margin-bottom: 2rem;">
@@ -627,6 +848,16 @@
                     <div>
                         <strong>Social Media</strong><br>
                        <a href="https://www.instagram.com/espyropens?igsh=eTZ5M2VjOTd5OGYw">@espyropens</a> 
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24" fill="#0A66C2">
+  <path d="M100.28 448H7.4V148.9h92.88zm-46.44-340C24.3 108 0 83.7 0 53.8 0 24.5 24.3 0 54 0s54 24.5 54 53.8c0 29.9-24.3 54.2-54.16 54.2zM447.9 448h-92.4V302.4c0-34.7-12.4-58.4-43.6-58.4-23.8 0-38 16-44.3 31.4-2.3 5.5-2.8 13.1-2.8 20.8V448h-92.6s1.2-241.7 0-266.6h92.6v37.8c12.3-19 34.3-46.1 83.5-46.1 60.9 0 106.6 39.8 106.6 125.4V448z"/>
+</svg>
+</div>
+                    <div>
+                        <strong>Linkedin</strong><br>
+                       <a href="https://www.linkedin.com/company/espyro-team">espyro-team</a> 
                     </div>
                 </div>
             </div>
@@ -697,6 +928,36 @@
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(-10px) scale(1)';
+            });
+        });
+
+
+        // Create sparkles periodically
+        setInterval(createSparkle, 2000);
+
+        // Media placeholder interactions
+        document.querySelectorAll('.media-placeholder').forEach(placeholder => {
+            placeholder.addEventListener('click', function() {
+                // Simulate file upload
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*,video/*';
+                input.onchange = function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const mediaContainer = placeholder.parentElement;
+                            if (file.type.startsWith('image/')) {
+                                mediaContainer.innerHTML = `<img src="${e.target.result}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">`;
+                            } else if (file.type.startsWith('video/')) {
+                                mediaContainer.innerHTML = `<video src="${e.target.result}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" controls></video>`;
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                };
+                input.click();
             });
         });
     </script>
